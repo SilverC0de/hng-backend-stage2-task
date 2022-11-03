@@ -1,13 +1,21 @@
-## HNG task 2 by Silver with AI
+## HNG task 2 by Silver with AI and Machine Learning capabilities
 
-* Endpoint is a POST api https://hjf/math
+* Endpoint is a POST api https://hng-backend-stage2-task.vercel.app/math
 * Backend is built with expressJs and openAI
-* It takes this inputs schema
+* It takes this inputs
 ```json
 { 
-    "operation_type": Enum <addition | subtraction | multiplication | *words*>,
-    "x": Integer, 
-    "y": Integer
+    "operation_type": "addition",
+    "x": 2, 
+    "y": 24
+}
+```
+or
+```json
+{ 
+    "operation_type": "What is 2 + 24 please",
+    "x": null, 
+    "y": null
 }
 ```
 * **operation_type** can also be a text e.g *Hey what's 2 + 22 ?*
