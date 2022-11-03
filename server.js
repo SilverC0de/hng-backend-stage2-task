@@ -50,8 +50,10 @@ api.post('/ops', async (request, response) => {
 
             if(Math.round(first_num + second_num) == Math.round(answer)) ops = 'addition'
             else if(Math.round(first_num - second_num) == Math.round(answer)) ops = 'subtraction'
+            else if(Math.round(second_num - first_num) == Math.round(answer)) ops = 'subtraction'
             else if(Math.round(first_num * second_num) == Math.round(answer)) ops = 'multiplication'
             else if(Math.round(first_num / second_num) == Math.round(answer)) ops = 'division'
+            else if(Math.round(second_num / first_num) == Math.round(answer)) ops = 'division'
             else ops = operation
             
 
