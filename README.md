@@ -7,13 +7,13 @@
 { 
     "operation_type": "addition",
     "x": 2, 
-    "y": 24
+    "y": 22
 }
 ```
 or
 ```json
 { 
-    "operation_type": "What is 2 + 24 please",
+    "operation_type": "What is 2 + 22 please",
     "x": null, 
     "y": null
 }
