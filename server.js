@@ -46,8 +46,8 @@ api.post('/math', async (request, response) => {
             //get the second number
 
             let answer = await compute(operation) //run openAI model on the word
-            let first_num = ((operation.match(/\d+/g)?.[0]) ?? ['0'])[0];
-            let second_num = ((operation.match(/\d+/g)?.[1]) ?? ['0'])[0];
+            let first_num = parseInt(((operation.match(/\d+/g)?.[0]) ?? ['0'])[0]);
+            let second_num = parseInt(((operation.match(/\d+/g)?.[1]) ?? ['0'])[0]);
 
           
 
@@ -65,7 +65,8 @@ api.post('/math', async (request, response) => {
             })
         }
     } catch (e) {
-        response.status(500).send('Unable to compute arithmetic operation')
+        console.log(e.message)
+        response.status(500).send('Unable to compute arithmetic operation, please try a different operation')
     }
 })
 
