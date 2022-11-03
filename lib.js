@@ -20,12 +20,11 @@ const compute = async (word) => {
     });
     
     //return the answer without any additional text
-    let answer = compute.data.choices[0].text;
+    let computed = compute.data.choices[0].text;
+    let numbers = computed.replace(/\D/g,' x ').match(/\d+/g).length; //get total number of numbers
+    let answer = computed.replace(/\D/g,' x ').match(/\d+/g)?.[numbers - 1]; //get the last number
 
-
-    let answer_array = answer.match(/[0-9]+$/);
-
-    return parseInt(answer_array[0], 10);
+    return answer;
 }
 
 module.exports = { compute }
