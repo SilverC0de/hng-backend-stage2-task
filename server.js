@@ -40,16 +40,12 @@ api.post('/math', async (request, response) => {
         } else {
             let ops;
 
-            // process words lol
-            // look for arithmetic texts
-            // get the first number
-            //get the second number
 
             let answer = await compute(operation) //run openAI model on the word
-            let first_num = parseInt(((operation.match(/\d+/g)?.[0]) ?? ['0'])[0]);
-            let second_num = parseInt(((operation.match(/\d+/g)?.[1]) ?? ['0'])[0]);
-
-          
+            let first_num = parseInt(operation.replace(/\D/g,' x ').match(/\d+/g)?.[0]);
+            let second_num = parseInt(operation.replace(/\D/g,' x ').match(/\d+/g)?.[1]);
+            
+         
 
             if(Math.round(first_num + second_num) == Math.round(answer)) ops = 'addition'
             else if(Math.round(first_num - second_num) == Math.round(answer)) ops = 'subtraction'
