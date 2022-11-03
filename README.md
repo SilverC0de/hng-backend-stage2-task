@@ -14,8 +14,8 @@ or
 ```json
 { 
     "operation_type": "What is 2 + 22 please",
-    "x": null, 
-    "y": null
+    "x": 0, 
+    "y": 0
 }
 ```
 * **operation_type** can also be a text e.g *Hey what's 2 + 22 ?*
