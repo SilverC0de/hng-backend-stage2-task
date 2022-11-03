@@ -11,7 +11,7 @@ api.get('/', (request, response) => {
     response.status(200).send('HNG task 2 arithmetic system is running')
 })
 
-api.post('/math', async (request, response) => {
+api.post('/ops', async (request, response) => {
     let operation = String(request.body.operation_type).toLowerCase();
     let x = parseFloat(request.body.x);
     let y = parseFloat(request.body.y);
@@ -41,9 +41,10 @@ api.post('/math', async (request, response) => {
             let ops;
 
 
-            let answer = await compute(operation) //run openAI model on the word
-            let first_num = parseInt(operation.replace(/\D/g,' x ').match(/\d+/g)?.[0]);
-            let second_num = parseInt(operation.replace(/\D/g,' x ').match(/\d+/g)?.[1]);
+
+            let answer = await compute(operation.replace('x', x).replace('y', y)) //run openAI model on the word
+            let first_num = parseInt(operation.replace('x', x).replace('y', y).replace(/\D/g,' z ').match(/\d+/g)?.[0]);
+            let second_num = parseInt(operation.replace('x', x).replace('y', y).replace(/\D/g,' z ').match(/\d+/g)?.[1]);
             
          
 

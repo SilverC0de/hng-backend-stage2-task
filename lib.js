@@ -21,8 +21,8 @@ const compute = async (word) => {
     
     //return the answer without any additional text
     let computed = compute.data.choices[0].text;
-    let numbers = computed.replace(/\D/g,' x ').match(/\d+/g).length; //get total number of numbers
-    let answer = computed.replace(/\D/g,' x ').match(/\d+/g)?.[numbers - 1]; //get the last number
+    let numbers = computed.replace(/\D/g,' z ').match(/\d+/g).length; //get total number of numbers
+    let answer = computed.replace(/\D/g,' z ').match(/\d+/g)?.[numbers - 1]; //get the last number
 
     return answer;
 }
