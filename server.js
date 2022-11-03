@@ -38,21 +38,33 @@ api.post('/math', async (request, response) => {
                 operation_type: operation
             })
         } else {
+            let ops;
+
             // process words lol
             // look for arithmetic texts
             // get the first number
             //get the second number
 
             let answer = await compute(operation) //run openAI model on the word
+            let first_num = ((operation.match(/\d+/g)?.[0]) ?? ['0'])[0];
+            let second_num = ((operation.match(/\d+/g)?.[1]) ?? ['0'])[0];
+
+          
+
+            if(Math.round(first_num + second_num) == Math.round(answer)) ops = 'addition'
+            else if(Math.round(first_num - second_num) == Math.round(answer)) ops = 'subtraction'
+            else if(Math.round(first_num * second_num) == Math.round(answer)) ops = 'multiplication'
+            else if(Math.round(first_num / second_num) == Math.round(answer)) ops = 'division'
+            else ops = operation
+            
 
             response.status(200).json({
                 slackUsername: 'Silver',
                 result: parseFloat(answer),
-                operation_type: operation
+                operation_type: ops
             })
         }
     } catch (e) {
-        console.log(e.message)
         response.status(500).send('Unable to compute arithmetic operation')
     }
 })
