@@ -1,6 +1,6 @@
 ## HNG task 2 by Silver with AI and Machine Learning capabilities
 
-* Endpoint is a POST api https://hng-backend-stage2-task.vercel.app/ops
+* Endpoint is a POST api https://hng-backend-stage2-task.vercel.app/compute
 * Backend is built with expressJs and openAI
 * It takes this inputs
 ```json

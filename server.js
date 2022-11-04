@@ -11,7 +11,7 @@ api.get('/', (request, response) => {
     response.status(200).send('HNG task 2 arithmetic system is running')
 })
 
-api.post('/ops', async (request, response) => {
+api.post('/compute', async (request, response) => {
     let operation = String(request.body.operation_type).toLowerCase();
     let x = parseFloat(request.body.x);
     let y = parseFloat(request.body.y);
