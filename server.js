@@ -71,7 +71,7 @@ api.post('/compute', async (request, response) => {
 
 //for endpoints that are not valid
 api.all('*', (request, response) => {
-    response.status(404).send('Not a valid route, try the endpoint without any path')
+    response.status(404).send('HNG task 2 arithmetic system is running, however, you\'re using the wrong path or method')
 });
 
 
