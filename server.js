@@ -12,7 +12,7 @@ api.get('/', (request, response) => {
 })
 
 api.post('/compute', async (request, response) => {
-    let operation = String(request.body.operation_type).toLowerCase();
+    let operation = String(request.body.operation_type).toLowerCase() + ' '; //extra space for accurate find and replace
     let x = parseFloat(request.body.x);
     let y = parseFloat(request.body.y);
     
@@ -40,11 +40,22 @@ api.post('/compute', async (request, response) => {
         } else {
             let ops;
 
+            //retrieve first number from the text
+            let first_num = parseInt(operation.replace(' x ',  ' ' + x + ' ').replace(' y ',  ' ' + y + ' ').replace(/\D/g,' z ').match(/\d+/g)?.[0]); 
 
+            //retrieve second number from the text
+            let second_num = parseInt(operation.replace(' x ',  ' ' + x + ' ').replace(' y ',  ' ' + y + ' ').replace(/\D/g,' z ').match(/\d+/g)?.[1]);
 
-            let answer = await compute(operation.replace('x', x).replace('y', y)) //run openAI model on the word
-            let first_num = parseInt(operation.replace('x', x).replace('y', y).replace(/\D/g,' z ').match(/\d+/g)?.[0]);
-            let second_num = parseInt(operation.replace('x', x).replace('y', y).replace(/\D/g,' z ').match(/\d+/g)?.[1]);
+        
+
+            if(isNaN(first_num) && isNaN(second_num)){
+                operation = `${operation} x and y` + ' ' //extra space for accurate find and replace
+                first_num = x
+                second_num = y
+            }
+
+            //find the answer
+            let answer = await compute(operation.replace(' x ', ' ' + x + ' ').replace(' y ',  ' ' + y + ' ')) //run openAI model on the word
             
          
 
@@ -64,7 +75,7 @@ api.post('/compute', async (request, response) => {
             })
         }
     } catch (e) {
-        console.log(e.message)
+        console.log(e)
         response.status(500).send('Unable to compute arithmetic operation, please try a different operation')
     }
 })
